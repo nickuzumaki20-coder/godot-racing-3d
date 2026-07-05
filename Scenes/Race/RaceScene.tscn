@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/Race/RaceController.gd" type="Script"]
+[ext_resource path="res://Scripts/Car/CarPhysics.gd" type="Script"]
+[ext_resource path="res://Scripts/Car/CarCamera.gd" type="Script"]
 
 [node name="RaceScene" type="Spatial"]
 script = ExtResource( 1 )
@@ -9,22 +11,17 @@ script = ExtResource( 1 )
 width = 500.0
 height = 1.0
 depth = 500.0
+use_collision = true
 
-[node name="RaceTrack" type="Spatial"]
-
-[node name="Checkpoint1" type="Area3D"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20 )
-
-[node name="CSGBox3D" type="CSGBox3D"]
-width = 50.0
+[node name="RaceTrack" type="CSGBox3D"]
+width = 100.0
 height = 0.5
-depth = 10.0
-
-[node name="CollisionShape3D" type="CollisionShape3D"]
-shape = BoxShape3D( 50, 0.5, 10 )
+depth = 300.0
+use_collision = true
 
 [node name="PlayerCar" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+script = ExtResource( 2 )
 
 [node name="MeshInstance" type="MeshInstance"]
 mesh = BoxMesh( 2, 1, 4 )
@@ -32,19 +29,25 @@ mesh = BoxMesh( 2, 1, 4 )
 [node name="CollisionShape3D" type="CollisionShape3D"]
 shape = BoxShape3D( 2, 1, 4 )
 
+[node name="CameraRig" type="Spatial"]
+script = ExtResource( 3 )
+
+[node name="Camera3D" type="Camera3D"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 10 )
+
 [node name="DirectionalLight" type="DirectionalLight"]
 cast_shadow = true
 energy = 1.5
 
 [node name="HUD" type="CanvasLayer"]
 
-[node name="VBoxContainer" type="VBoxContainer"]
+[node name="RaceHUD" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 20.0
-margin_top = 20.0
-margin_right = 20.0
-margin_bottom = 20.0
+
+[node name="InfoPanel" type="Control"]
+anchor_right = 0.2
+anchor_bottom = 0.2
 
 [node name="Speed" type="Label"]
 margin_right = 200.0
@@ -61,7 +64,7 @@ text = "Money: $0"
 margin_top = 60.0
 margin_right = 200.0
 margin_bottom = 90.0
-text = "Mission: N/A"
+text = "Mission: Race"
 
 [node name="Timer" type="Label"]
 margin_top = 90.0

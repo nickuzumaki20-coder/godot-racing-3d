@@ -2,6 +2,7 @@
 
 [ext_resource path="res://Scripts/World/WorldManager.gd" type="Script"]
 [ext_resource path="res://Scripts/Car/CarPhysics.gd" type="Script"]
+[ext_resource path="res://Scripts/Car/CarCamera.gd" type="Script"]
 
 [node name="OpenWorld" type="Spatial"]
 script = ExtResource( 1 )
@@ -10,17 +11,18 @@ script = ExtResource( 1 )
 width = 500.0
 height = 1.0
 depth = 500.0
+use_collision = true
 
 [node name="Road" type="CSGBox3D"]
 margin_left = -50.0
 margin_top = 1.1
-margin_right = 50.0
-margin_bottom = 400.0
 width = 100.0
 height = 0.5
 depth = 400.0
+use_collision = true
 
 [node name="PlayerCar" type="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
 script = ExtResource( 2 )
 
 [node name="MeshInstance" type="MeshInstance"]
@@ -29,12 +31,30 @@ mesh = BoxMesh( 2, 1, 4 )
 [node name="CollisionShape3D" type="CollisionShape3D"]
 shape = BoxShape3D( 2, 1, 4 )
 
-[node name="Camera" type="Spatial"]
+[node name="CameraRig" type="Spatial"]
 script = ExtResource( 3 )
 
 [node name="Camera3D" type="Camera3D"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 10 )
 
 [node name="DirectionalLight" type="DirectionalLight"]
 cast_shadow = true
 energy = 1.5
 shadow_enabled = true
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="InfoPanel" type="Control"]
+anchor_right = 0.2
+anchor_bottom = 0.15
+
+[node name="Speed" type="Label"]
+margin_right = 200.0
+margin_bottom = 30.0
+text = "Speed: 0 km/h"
+
+[node name="Money" type="Label"]
+margin_top = 30.0
+margin_right = 200.0
+margin_bottom = 60.0
+text = "Money: $0"

@@ -28,10 +28,6 @@ margin_bottom = 40.0
 text = "GODOT RACING 3D"
 align = 1
 
-[node name="VSeparator" type="VSeparator"]
-margin_top = 40.0
-margin_bottom = 50.0
-
 [node name="NewGameBtn" type="Button"]
 margin_top = 50.0
 margin_right = 200.0
