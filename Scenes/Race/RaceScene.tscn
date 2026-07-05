@@ -1,0 +1,70 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Race/RaceController.gd" type="Script"]
+
+[node name="RaceScene" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="Ground" type="CSGBox3D"]
+width = 500.0
+height = 1.0
+depth = 500.0
+
+[node name="RaceTrack" type="Spatial"]
+
+[node name="Checkpoint1" type="Area3D"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20 )
+
+[node name="CSGBox3D" type="CSGBox3D"]
+width = 50.0
+height = 0.5
+depth = 10.0
+
+[node name="CollisionShape3D" type="CollisionShape3D"]
+shape = BoxShape3D( 50, 0.5, 10 )
+
+[node name="PlayerCar" type="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+
+[node name="MeshInstance" type="MeshInstance"]
+mesh = BoxMesh( 2, 1, 4 )
+
+[node name="CollisionShape3D" type="CollisionShape3D"]
+shape = BoxShape3D( 2, 1, 4 )
+
+[node name="DirectionalLight" type="DirectionalLight"]
+cast_shadow = true
+energy = 1.5
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="VBoxContainer" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 20.0
+margin_bottom = 20.0
+
+[node name="Speed" type="Label"]
+margin_right = 200.0
+margin_bottom = 30.0
+text = "Speed: 0 km/h"
+
+[node name="Money" type="Label"]
+margin_top = 30.0
+margin_right = 200.0
+margin_bottom = 60.0
+text = "Money: $0"
+
+[node name="Mission" type="Label"]
+margin_top = 60.0
+margin_right = 200.0
+margin_bottom = 90.0
+text = "Mission: N/A"
+
+[node name="Timer" type="Label"]
+margin_top = 90.0
+margin_right = 200.0
+margin_bottom = 120.0
+text = "Time: 0:00"
